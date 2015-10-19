@@ -1,0 +1,17 @@
+.panel.panel-info
+  .panel-heading
+    %form{name: "searchForm", role: "form", novalidate: true, data: {ng_submit: "searchRoll(code)"}}
+      .row
+        .form-group.col-md-12
+          %label{for: "code"} Search:
+          %input.form-control{placeholder: "Enter \"ROLL CODE\" here...", name: "code", type: "text", required: true, data: {ng_model: "code"}}/
+          %p.text-danger{data: {ng_show: "searchForm.code.$invalid && searchForm.code.$dirty"}} ID is required.
+        .btn-group.btn-group-justified.col-md-12
+          .btn-group
+            %button.btn.btn-info{type: "button", data: {ng_click: "resetForm()"}} Reset
+          .btn-group
+            %button.btn.btn-info{type: "button", data: {ui_sref: "home"}} Close
+        .btn-group.btn-group-justified.col-md-12
+          .btn-group
+            %button.btn.btn-danger{type: "submit", data: {ng_disabled: "searchForm.$invalid"}} Find Roll
+%div{data: {ng_include: "'rolls/_index.html'"}}

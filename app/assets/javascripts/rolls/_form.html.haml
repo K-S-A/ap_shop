@@ -1,0 +1,30 @@
+%form.row{name: "rollForm", role: "form", novalidate: true, data: {ng_submit: "addRoll(textile)"}}
+  .col-md-1
+    .form-group.has-feedback{data: {ng_class: "rollForm.suffix.$valid ? 'has-success': 'has-error'"}}
+      %input.form-control{name: "suffix", type: "text", placeholder: "Suffix",
+                          data: {ng_model: "roll.suffix",
+                                 ng_change: "roll.suffix = roll.suffix.toLowerCase()",
+                                 ensure_unique: "{rolls: textile.rolls}"}}/
+      %span.form-control-feedback.glyphicon{data: {ng_class: "rollForm.suffix.$valid ? 'glyphicon-ok': 'glyphicon-remove'"}}
+  .col-md-1
+    %input.form-control{name: "location", type: "text", placeholder: "Location", data: {ng_model: "roll.location"}}/
+  .col-md-2
+    .form-group.has-feedback{data: {ng_class: "rollForm.total.$valid ? 'has-success': 'has-error'"}}
+      %input.form-control{name: "total", type: "number", min: "1", max: "100", required: true, placeholder: "Total", data: {ng_model: "arrival.total"}}/
+      %span.form-control-feedback.glyphicon{data: {ng_class: "rollForm.total.$valid ? 'glyphicon-ok': 'glyphicon-remove'"}}
+  .col-md-2
+    .form-group.has-feedback{data: {ng_class: "rollForm.arrival_date.$valid ? 'has-success': 'has-error'"}}
+      %input.form-control{name: "arrival_date", type: "text", placeholder: "Arrival Date (dd-mm-yyyy)", required: true,
+                          data: {ng_model: "arrival.arrival_date",
+                                 ng_pattern: "datePattern"}}/
+      %span.form-control-feedback.glyphicon{data: {ng_class: "rollForm.arrival_date.$valid ? 'glyphicon-ok': 'glyphicon-remove'"}}
+  .col-md-2
+    %input.form-control{name: "info", type: "text", placeholder: "Arrival Info", data: {ng_model: "arrival.info"}}/
+  .col-md-2
+    %input.form-control{name: "comment", type: "text", placeholder: "Comment", data: {ng_model: "roll.comment"}}/
+  .col-md-2
+    .btn-group.btn-group-justified
+      .btn-group
+        %button.btn.btn-info{type: "button", data: {ng_click: "resetForm(textile)"}} Close
+      .btn-group
+        %button.btn.btn-danger{type: "submit", data: {ng_disabled: "rollForm.$invalid"}} Create Roll

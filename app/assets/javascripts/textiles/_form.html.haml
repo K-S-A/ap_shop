@@ -1,0 +1,32 @@
+/ Notice
+.alert.alert-success.fade.in{data: {ng_show: "message", ng_click: "message = false"}}
+  %strong {{message}}
+.panel.panel-info
+  .panel-heading
+    %form{name: "textileForm", role: "form", novalidate: true, data: {ng_submit: "addGroup()"}}
+      %fieldset{data: {ng_disabled: "message"}}
+        .row
+          / Title
+          .form-group.col-md-6
+            %label{for: "code"} Code:
+            %input.form-control{name: "code", type: "text", required: true, data: {ng_model: "textile.name"}}/
+            %p.text-danger{data: {ng_show: "textileForm.code.$invalid && textileForm.code.$dirty"}} Code is required.
+          .form-group.col-md-6
+            %label{for: "group"} Group:
+            %input.form-control{name: "group", type: "text", required: true, data: {ng_model: "textile.group_id"}}/
+            %p.text-danger{data: {ng_show: "textileForm.group.$invalid && textileForm.group.$dirty"}} Group is required.
+          / Title
+        .row
+          .form-group.col-md-12
+            %label{for: "name"} Name:
+            %input.form-control{name: "name", type: "text", required: true, data: {ng_model: "textile.name"}}/
+            %p.text-danger{data: {ng_show: "textileForm.name.$invalid && textileForm.name.$dirty"}} Name is required.
+          / Buttons
+          .btn-group.btn-group-justified.col-md-12
+            .btn-group
+              %button.btn.btn-info{type: "button", data: {ng_click: "resetForm()"}} Reset
+            .btn-group
+              %button.btn.btn-info{type: "button", data: {ui_sref: "groups"}} Close
+          .btn-group.btn-group-justified.col-md-12
+            .btn-group
+              %button.btn.btn-danger{type: "submit", data: {ng_disabled: "textileForm.$invalid"}} Create Group

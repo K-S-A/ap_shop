@@ -1,0 +1,11 @@
+.panel-heading
+  %a.label-warning{href: "#/textiles/{{textile.id}}"} {{textile.code}}
+  %span "{{textile.name}}"
+  .badge ({{textile.manufacturer}}-{{textile.man_code}}, {{textile.country}})
+  .label.label-success {{textile.height}} cm
+  .label.label-danger {{textile.price | currency : 'UAH-'}}
+  .badge Roll count:{{textile.rolls.length}}
+  .btn.btn-xs.btn-success{data: {ng_if: "!roll.textile_id", ng_click: "resetForm(textile)"}} New Roll
+.panel-body
+  .panel.panel-danger{data: {ng_if: "textile.new", ng_include: "'rolls/_form.html'"}}
+  .panel.panel-info{data: {ng_include: "'rolls/_roll.html'", ng_repeat: "roll in textile.rolls | orderBy : 'suffix'", ng_if: "roll.suffix === suffix || suffix === '*'"}}
