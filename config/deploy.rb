@@ -1,6 +1,6 @@
 
 # Change these
-server '192.168.1.4', port: 80, roles: [:web, :app, :db], primary: true
+server '127.0.0.1', port: 80, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:K-S-A/ap_shop.git'
 set :application,     'ap_shop'
