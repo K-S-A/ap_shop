@@ -4,7 +4,7 @@ angular.module('storeApp').factory 'textiles', [
     o =
       textiles: []
 
-    o.getAll = (code = null) ->
+    o.getAll = (code) ->
       $http.get('/textiles.json', params: {code: code}).success (data) ->
         angular.copy data, o.textiles
         return

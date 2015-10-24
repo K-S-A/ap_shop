@@ -5,7 +5,17 @@ angular.module('storeApp').controller 'OrdersCtrl', [
   'textiles'
   'rollsFactory'
   (_, $scope, $state, textiles, rollsFactory) ->
-    $scope.statuses = ['unconfirmed', 'prepaid', 'full payment', 'processed', 'ready', 'delivered', 'canceled']
+    $scope.statuses = [
+      'unconfirmed'
+      'prepaid'
+      'full payment'
+      'processed'
+      'ready'
+      'delivered'
+      'canceled']
+    $scope.addForm=
+      visible: false
+    $scope.textiles = textiles.textiles
     $scope.order =
       number: null
       order_date: new Date().toISOString().split('T')[0]
@@ -16,7 +26,17 @@ angular.module('storeApp').controller 'OrdersCtrl', [
       prepay: 0
       discount: 4
       total: 100
+      order_items: [1,2]
     $scope.total = $scope.order.total - $scope.order.discount
+
+    $scope.addItem = ->
+      $scope.addForm.visible = true
+
+    $scope.resetForm = ->
+      $state.reload()
+
+    $scope.clearItems =->
+      $scope.order.order_items = []
 
     $scope.checkDiscount = ->
       $scope.order.discount = if ($scope.order.discount > $scope.order.total) then $scope.order.total else $scope.order.discount

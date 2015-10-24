@@ -6,8 +6,9 @@ angular.module('storeApp').controller 'TextilesCtrl', [
   'rollsFactory'
   (_, $scope, $state, textiles, rollsFactory) ->
     $scope.textiles = textiles.textiles
-    $scope.code = null
-    $scope.suffix = "*"
+    $scope.obj =
+      code: null
+      suffix: "*"
     $scope.datePattern = new RegExp("^([1-9]|0[1-9]|[1-2]\\d|3[0-1])\\W([1-9]|0[1-9]|1[1-2])\\W(19|" + new Date().getFullYear().toString().slice(0,2) + ")\\d{2}$")
 
     $scope.resetForm = (textile) ->
@@ -24,7 +25,7 @@ angular.module('storeApp').controller 'TextilesCtrl', [
       $scope.arrival = {}
 
     $scope.searchTextile = ->
-      textiles.getAll($scope.code)
+      textiles.getAll($scope.obj.code)
       $scope.roll.textile_id = false
       return
 

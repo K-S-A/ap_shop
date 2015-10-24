@@ -3,10 +3,10 @@
   .row
     .col-md-6.form-group
       %label{for: "code"} Code:
-      %input.form-control{name: "code", type: "text", placeholder: "Textile Code", data: {ng_model: "code"}}/
+      %input.form-control{name: "code", type: "text", placeholder: "Textile Code", data: {ng_model: "obj.code"}}/
     .col-md-3.form-group
       %label{for: "roll"} Letter:
-      %input.form-control{name: "roll", type: "text", data: {ng_model: "suffix", ng_change: "suffix = suffix.toLowerCase()"}}/
+      %input.form-control{name: "roll", type: "text", data: {ng_model: "obj.suffix", ng_change: "obj.suffix = obj.suffix.toLowerCase()"}}/
     .col-md-3
       %button.btn.btn-lg.btn-danger{type: "submit"} Start search!
 .panel{data: {ng_include: "'textiles/_textile.html'", ng_repeat: "textile in textiles | orderBy : 'code'", ng_class: "textile.code === code ? 'panel-primary' : 'panel-info'"}}
