@@ -1,14 +1,12 @@
 %form{name: "textileForm", role: "form", novalidate: true, data: {ng_submit: "searchTextile()"}}
   %h2 Find textile
-  .form-group
-    .row
-      .col-md-6
-        %label{for: "code"} Code:
-        %input.form-control{name: "code", type: "text", placeholder: "Textile Code", data: {ng_model: "code"}}/
-      .col-md-3
-        %label{for: "roll"} Letter:
-        %input.form-control{name: "roll", type: "text", data: {ng_model: "suffix", ng_change: "suffix = suffix.toLowerCase()"}}/
-      .col-md-3
-        %button.btn.btn-lg.btn-danger{type: "submit"} Start search!
-
+  .row
+    .col-md-6.form-group
+      %label{for: "code"} Code:
+      %input.form-control{name: "code", type: "text", placeholder: "Textile Code", data: {ng_model: "code"}}/
+    .col-md-3.form-group
+      %label{for: "roll"} Letter:
+      %input.form-control{name: "roll", type: "text", data: {ng_model: "suffix", ng_change: "suffix = suffix.toLowerCase()"}}/
+    .col-md-3
+      %button.btn.btn-lg.btn-danger{type: "submit"} Start search!
 .panel{data: {ng_include: "'textiles/_textile.html'", ng_repeat: "textile in textiles | orderBy : 'code'", ng_class: "textile.code === code ? 'panel-primary' : 'panel-info'"}}

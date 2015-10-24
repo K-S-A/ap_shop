@@ -48,12 +48,15 @@ ActiveRecord::Schema.define(version: 20151008162950) do
 
   create_table "orders", force: :cascade do |t|
     t.date     "order_date"
+    t.string   "number"
     t.string   "customer"
     t.string   "customer_phone"
     t.string   "status"
     t.string   "order_comment"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.decimal  "prepay",         precision: 5, scale: 2
+    t.decimal  "discount",       precision: 5, scale: 2
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   create_table "rolls", force: :cascade do |t|

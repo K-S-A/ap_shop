@@ -25,6 +25,7 @@ angular.module('storeApp').controller 'TextilesCtrl', [
 
     $scope.searchTextile = ->
       textiles.getAll($scope.code)
+      $scope.roll.textile_id = false
       return
 
     $scope.addRoll = (textile) ->

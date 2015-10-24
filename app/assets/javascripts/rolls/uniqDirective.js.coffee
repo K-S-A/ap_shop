@@ -1,7 +1,8 @@
+'use strict'
+
 angular.module('storeApp').directive 'ensureUnique', [
   '_'
-  'textiles'
-  (_, textiles) ->
+  (_) ->
     require: 'ngModel'
     link: (scope, ele, attrs, c) ->
       scope.$watch attrs.ngModel, ->

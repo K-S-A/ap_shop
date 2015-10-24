@@ -19,7 +19,10 @@ angular.module('storeApp', [
         'textiles'
         (textiles) ->
           textiles.getAll()
-      ])
+      ]).state('newOrder',
+      url: '/newOrder'
+      templateUrl: 'orders/_form.html'
+      controller: 'OrdersCtrl')
 
     $urlRouterProvider.otherwise 'textiles'
     return
