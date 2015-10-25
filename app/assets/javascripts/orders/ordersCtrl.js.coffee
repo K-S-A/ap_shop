@@ -4,7 +4,9 @@ angular.module('storeApp').controller 'OrdersCtrl', [
   '$state'
   'textiles'
   'rollsFactory'
-  (_, $scope, $state, textiles, rollsFactory) ->
+  'translation'
+  (_, $scope, $state, textiles, rollsFactory, translation) ->
+    $scope.language = translation.language
     $scope.statuses = [
       'unconfirmed'
       'prepaid'
@@ -42,4 +44,6 @@ angular.module('storeApp').controller 'OrdersCtrl', [
       $scope.order.discount = if ($scope.order.discount > $scope.order.total) then $scope.order.total else $scope.order.discount
       $scope.total = $scope.order.total - $scope.order.discount
 
+    $scope.setLang = ->
+      translation.language = $scope.language
 ]

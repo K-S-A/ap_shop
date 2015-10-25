@@ -1,10 +1,20 @@
-
+%select{data: {ng_model: "language", ng_change: "setLang()"}}
+  %option{value: "en"} EN
+  %option{value: "ua"} UA
+  %option{value: "ru"} RU
 %form{name: "orderForm", role: "form", novalidate: true, data: {ng_submit: "addOrder()"}}
+  .btn-group.btn-group-justified
+    .btn-group
+      %button.btn.btn-default.text-capitalize{type: "button", data: {ui_sref: "textiles"}} {{'close form' | translate : language}}
+    .btn-group
+      %button.btn.btn-info.text-capitalize{type: "button", data: {ng_click: "resetForm()"}} {{'reset form' | translate : language}}
+    .btn-group
+      %button.btn.btn-success.text-capitalize{type: "submit", form: "orderForm", data: {ng_disabled: "orderForm.$invalid"}} {{'place order' | translate : language}}
   .row
     .col-xs-3
       .form-group.has-feedback{data: {ng_class: "orderForm.number.$valid ? 'has-success': 'has-error'"}}
-        %label{for: "number"} Order Number:
-        %input.form-control{name: "number", type: "text", placeholder: "Number", required: true, data: {ng_model: "order.number", ng_change: "order.number = order.number.toLowerCase()"}}/
+        %label.text-capitalize{for: "number"} {{'order number' | translate : language}}:
+        %input.form-control{name: "number", type: "text", placeholder: "{{'Number' | translate : language}}", required: true, data: {ng_model: "order.number", ng_change: "order.number = order.number.toLowerCase()"}}/
         %span.form-control-feedback.glyphicon{data: {ng_class: "orderForm.number.$valid ? 'glyphicon-ok': 'glyphicon-remove'"}}
     .col-xs-3
       .form-group.has-feedback{data: {ng_class: "orderForm.order_date.$valid ? 'has-success': 'has-error'"}}
@@ -43,28 +53,20 @@
         %span.form-control-feedback.glyphicon{data: {ng_class: "orderForm.discount.$valid ? 'glyphicon-ok': 'glyphicon-remove'"}}
     .col-xs-2
       .form-group
-        %label Total Amount:
+        %label.text-capitalize {{'total amount' | translate : language}}:
         %b
           %p.form-control-static {{total | currency : 'UAH ' : 2}}
-  .btn-group
-    %button.btn.btn-lg.btn-primary{type: "button", data: {ng_click: "addForm.visible = false", ng_if: "addForm.visible"}} Close Add Form
+  .btn-group.btn-group-justified{data: {ng_if: "addForm.visible"}}
+    .btn-group
+      %button.btn.btn-lg.btn-primary.text-capitalize{type: "button", data: {ng_click: "addForm.visible = false"}} {{'close add form' | translate : language}}
   .btn-group.btn-group-justified{data: {ng_if: "!addForm.visible"}}
     .btn-group
-      %button.btn.btn-lg.btn-primary{type: "button", data: {ng_click: "addItem()"}} Add Item
+      %button.btn.btn-lg.btn-primary.text-capitalize{type: "button", data: {ng_click: "addItem()"}} {{'add item' | translate : language}}
     .btn-group{data: {ng_if: "order.order_items.length > 0"}}
-      %button.btn.btn-lg.btn-warning{type: "button", data: {ng_click: "removeItem()"}} Remove Selected
+      %button.btn.btn-lg.btn-warning.text-capitalize{type: "button", data: {ng_click: "removeItem()"}} {{'remove selected' | translate : language}}
     .btn-group{data: {ng_if: "order.order_items.length > 0"}}
-      %button.btn.btn-lg.btn-danger{type: "button", data: {ng_click: "clearItems()"}} Remove All
-%div
-  %ui-view{name: "searchForm", data: {ng_if: "addForm.visible"}}
-  .row.list-group
-    .col-xs-12
-      .list-group-item{data: {ng_include: "'order_items/_order_item.html'", ng_repeat: "order_item in order.order_items"}}
-  .btn-group.btn-group-justified
-    .btn-group
-      %button.btn.btn-default{type: "button", data: {ui_sref: "textiles"}} Close Form
-    .btn-group
-      %button.btn.btn-info{type: "button", data: {ng_click: "resetForm()"}} Reset Form
-    .btn-group
-      %button.btn.btn-success{type: "submit", data: {ng_disabled: "orderForm.$invalid"}} Place Order
-
+      %button.btn.btn-lg.btn-danger.text-capitalize{type: "button", data: {ng_click: "clearItems()"}} {{'remove all' | translate : language}}
+%ui-view{name: "searchForm", data: {ng_if: "addForm.visible"}}
+.row.list-group
+  .col-xs-12
+    .list-group-item{data: {ng_include: "'order_items/_order_item.html'", ng_repeat: "order_item in order.order_items"}}
