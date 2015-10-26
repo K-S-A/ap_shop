@@ -6,6 +6,7 @@ angular.module('storeApp').controller 'OrdersCtrl', [
   'textiles'
   'rollsFactory'
   (_, $scope, $state, $log, textiles, rollsFactory) ->
+    $scope.textiles = textiles.textiles
     $scope.roll = {}
     $scope.statuses = [
       'unconfirmed'
@@ -31,14 +32,12 @@ angular.module('storeApp').controller 'OrdersCtrl', [
       order_items: [
         {"roll_id":6,"price_sold":99.9,"name":"Textile3","left":1.0,"suffix":"a","code":"150577","item_comment":"", "amount_ordered": 1}
         {"roll_id":3,"price_sold":999.99,"name":"Textile1","left":22.4,"suffix":"b","code":"150579","item_comment":"", "amount_ordered": 1}]
-    $scope.total = _.reduce($scope.order.order_items, (memo, order_item)->
-        memo + order_item.amount_ordered * order_item.price_sold
-      0) - $scope.order.discount
+    $scope.total = 0
 
     $scope.updateTotal = ->
       $scope.order.total = Math.round(_.reduce($scope.order.order_items, (memo, order_item)->
-        if !order_item.amount_ordered then order_item.amount_ordered = order_item.left
-        if !order_item.price_sold then order_item.price_sold = 0.01
+        order_item.amount_ordered = order_item.left unless order_item.amount_ordered
+        order_item.price_sold = 0.01 unless order_item.price_sold
         memo + order_item.amount_ordered * order_item.price_sold
       0) * 100) / 100
       $scope.total = $scope.order.total - $scope.order.discount
@@ -58,11 +57,19 @@ angular.module('storeApp').controller 'OrdersCtrl', [
 
     $scope.checkDiscount = ->
       $scope.order.discount = if ($scope.order.discount > $scope.order.total) then $scope.order.total else $scope.order.discount
-      $scope.updateTotal()
+      $scope.total = $scope.order.total - $scope.order.discount
+
+    $scope.checkStatus = ->
+      $scope.order.status = switch
+        when $scope.order.prepay >= $scope.total then $scope.statuses[2]
+        when $scope.order.prepay > 0 then $scope.statuses[1]
+        else $scope.statuses[0]
 
     $scope.selectRoll = (roll_id, price, name, left, suffix, code) ->
-      if !_.some($scope.order.order_items, {roll_id: roll_id, price_sold: price})
-        $scope.order.order_items.push {roll_id: roll_id, price_sold: Number(price), amount_ordered: 1, name: name, left: Number(left), suffix: suffix, code: code, item_comment: ""}
+      if !_.some($scope.order.order_items, {roll_id: roll_id, price_sold: Number(price)})
+        order_item = {roll_id: roll_id, price_sold: Number(price), amount_ordered: 1, name: name, left: Number(left), suffix: suffix, code: code, item_comment: ""}
+        $scope.order.order_items.push order_item
         $scope.addForm.visible = false
         $scope.updateTotal()
+
 ]

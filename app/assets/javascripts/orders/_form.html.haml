@@ -39,7 +39,7 @@
     .col-xs-2
       .form-group.has-feedback{'show-validation': true}
         %label{for: "prepay"} Prepay Amount (UAH):
-        %input.form-control{name: "prepay", type: "number", min: "0", placeholder: "Prepay Amount (eq. UAH 100.00)", data: {ng_model: "order.prepay", ng_blur: "order.prepay > 0 ? order.status = 'prepaid' : ''"}}/
+        %input.form-control{name: "prepay", type: "number", min: "0", placeholder: "Prepay Amount (eq. UAH 100.00)", data: {ng_model: "order.prepay", ng_blur: "checkStatus()"}}/
         %span.form-control-feedback.glyphicon
     .col-xs-2
       .form-group.has-feedback{'show-validation': true}
@@ -63,5 +63,14 @@
       %button.btn.btn-lg.btn-danger{type: "button", data: {ng_click: "clearItems()"}} Remove All
   .row.list-group
     .col-xs-12
+      .list-group-item.text-center
+        .row
+          %b.col-xs-4 Name and code
+          %b.col-xs-4 Additional information
+          .col-xs-3
+            .row
+              %b.col-xs-6 Price, &#8372/(m or unit)
+              %b.col-xs-6 Amount, m or unit
+          %b.col-xs-1 Subtotal, &#8372
       .list-group-item{data: {ng_include: "'order_items/_order_item.html'", ng_repeat: "order_item in order.order_items"}}
 %ui-view{name: "searchForm", data: {ng_if: "addForm.visible"}}
