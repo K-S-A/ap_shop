@@ -35,15 +35,12 @@ angular.module('storeApp').controller 'OrdersCtrl', [
         memo + order_item.amount_ordered * order_item.price_sold
       0) - $scope.order.discount
 
-    $scope.callFunc = ->
-      $log.error($scope.listForm.$valid)
-
     $scope.updateTotal = ->
-      $scope.order.total = _.reduce($scope.order.order_items, (memo, order_item)->
-        if !order_item.amount_ordered then order_item.amount_ordered = 0
-        if !order_item.price_sold then order_item.price_sold = 0
+      $scope.order.total = Math.round(_.reduce($scope.order.order_items, (memo, order_item)->
+        if !order_item.amount_ordered then order_item.amount_ordered = order_item.left
+        if !order_item.price_sold then order_item.price_sold = 0.01
         memo + order_item.amount_ordered * order_item.price_sold
-      0)
+      0) * 100) / 100
       $scope.total = $scope.order.total - $scope.order.discount
 
     $scope.addItem = ->
