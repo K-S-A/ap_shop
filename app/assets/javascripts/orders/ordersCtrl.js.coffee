@@ -3,9 +3,10 @@ angular.module('storeApp').controller 'OrdersCtrl', [
   '$scope'
   '$state'
   '$log'
+  '$modal'
   'textiles'
   'rollsFactory'
-  (_, $scope, $state, $log, textiles, rollsFactory) ->
+  (_, $scope, $state, $log, $modal, textiles, rollsFactory) ->
     $scope.textiles = textiles.textiles
     $scope.roll = {}
     $scope.statuses = [
@@ -16,8 +17,6 @@ angular.module('storeApp').controller 'OrdersCtrl', [
       'ready'
       'delivered'
       'canceled']
-    $scope.addForm=
-      visible: false
     $scope.textiles = textiles.textiles
     $scope.order =
       number: null
@@ -43,7 +42,20 @@ angular.module('storeApp').controller 'OrdersCtrl', [
       $scope.total = $scope.order.total - $scope.order.discount
 
     $scope.addItem = ->
-      $scope.addForm.visible = true
+      modalInstance = $modal.open(
+        templateUrl: 'textiles/_index.html'
+        controller: 'TextilesCtrl'
+        scope: $scope
+        size: 'lg')
+      modalInstance.result.finally ->
+        $scope.updateTotal()
+
+    $scope.$on 'modal.hide', ->
+      $log.log("hide");
+
+    $scope.$on 'modal-shown', ->
+      $log.log("show");
+
 
     $scope.resetForm = ->
       $state.reload()
@@ -69,7 +81,5 @@ angular.module('storeApp').controller 'OrdersCtrl', [
       if !_.some($scope.order.order_items, {roll_id: roll_id, price_sold: Number(price)})
         order_item = {roll_id: roll_id, price_sold: Number(price), amount_ordered: 1, name: name, left: Number(left), suffix: suffix, code: code, item_comment: ""}
         $scope.order.order_items.push order_item
-        $scope.addForm.visible = false
-        $scope.updateTotal()
 
 ]

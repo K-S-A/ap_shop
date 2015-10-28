@@ -21,13 +21,9 @@ angular.module('storeApp', [
           textiles.getAll()
       ]).state('newOrder',
       url: '/newOrder'
-      views:
-        '':
-          templateUrl: 'orders/_form.html'
-          controller: 'OrdersCtrl'
-        'searchForm@newOrder':
-          templateUrl: 'textiles/_index.html'
-          controller: 'TextilesCtrl')
+      templateUrl: 'orders/_form.html'
+      controller: 'OrdersCtrl')
+
     $urlRouterProvider.otherwise 'textiles'
     return
 ]

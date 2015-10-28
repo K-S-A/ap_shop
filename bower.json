@@ -21,6 +21,6 @@
     "angular-underscore-module": "~1.0.1",
     "awesome-bootstrap-checkbox": "~0.3.5",
     "bootstrap": "~3.3.5",
-    "underscore": "~1.7.0"
+    "underscore": "~1.8.0"
   }
 }
