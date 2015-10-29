@@ -1,6 +1,7 @@
 %span{data: {ng_if: "obj.searches.length > 0"}} Search history:
 %a.btn.btn-info.btn-sm{data: {ng_repeat: "search in obj.searches", ng_click: "repeatSearch(search)"}}
-  %span _{{search.code}}_ /"{{search.name}}"/
+  %span _{{search.code}}_
+  %span "{{search.name}}"
   %span.glyphicon.glyphicon-remove{data: {ng_click: "obj.searches.splice($index, 1); stopPropagation()"}}
 %form{name: "textileForm", role: "form", novalidate: true, data: {ng_submit: "searchTextile()"}}
   %h2 Find textile
