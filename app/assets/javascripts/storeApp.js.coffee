@@ -14,12 +14,8 @@ angular.module('storeApp', [
     $stateProvider.state('textiles',
       url: '/textiles'
       templateUrl: 'textiles/_index.html'
-      controller: 'TextilesCtrl'
-      resolve: textilePromise: [
-        'textiles'
-        (textiles) ->
-          textiles.getAll()
-      ]).state('newOrder',
+      controller: 'TextilesCtrl')
+    .state('newOrder',
       url: '/newOrder'
       templateUrl: 'orders/_form.html'
       controller: 'OrdersCtrl')

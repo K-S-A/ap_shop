@@ -1,7 +1,7 @@
 class TextilesController < ApplicationController
 
   def index
-    @textiles = params[:code] ? Textile.where("code ILIKE ?", "#{params[:code]}%") : Textile.all
+    @textiles = params[:code] || params[:name] ? Textile.where("code ILIKE ? AND name ILIKE ?", "#{params[:code]}%", "%#{params[:name]}%") : Textile.all
   end
 
 end

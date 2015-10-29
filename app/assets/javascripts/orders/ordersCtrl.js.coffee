@@ -50,13 +50,6 @@ angular.module('storeApp').controller 'OrdersCtrl', [
       modalInstance.result.finally ->
         $scope.updateTotal()
 
-    $scope.$on 'modal.hide', ->
-      $log.log("hide");
-
-    $scope.$on 'modal-shown', ->
-      $log.log("show");
-
-
     $scope.resetForm = ->
       $state.reload()
 
