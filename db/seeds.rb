@@ -6,77 +6,54 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-group_list = %w(Group1 Group2 Group3)
+group_list = [
+  {name: 'Group1'},
+  {name: 'Group2'},
+  {name: 'Group3'}
+  ]
 textile_list = [
-  ["150579", "Textile1", "TR", "CLASSI", "64876D", 300, "m", 999.99, 1],
-  ["150578", "Textile2", "CN", "CLASSI", "64873A", 300, "m", 999.87, 1],
-  ["150577", "Textile3", "TR", "CLASSI", "64879C", 300, "m", 99.90, 2]
+  {code: "150579", name: "Textile1", country: "TR", manufacturer: "CLASSI", man_code: "64876D", height: 300, units: "m", price: 999.99, group_id: 1},
+  {code: "150578", name: "Textile2", country: "CN", manufacturer: "CLASSI", man_code: "64873A", height: 300, units: "m", price: 999.87, group_id: 1},
+  {code: "150577", name: "Textile3", country: "TR", manufacturer: "CLASSI", man_code: "64879C", height: 300, units: "m", price: 99.90, group_id: 2},
 ]
 roll_list = [
-  ["", "1-1-2", "First comment", 1],
-  ["a", "1-1-3", "Second comment", 1],
-  ["b", "1-1-1", "Third comment", 1],
-  ["", "1-3-2", "Fourth comment", 2],
-  ["a", "2-1-2", "Fifth comment", 2]
+  {suffix: "", location: "1-1-2", comment: "First comment", textile_id: 1},
+  {suffix: "a", location: "1-1-3", comment: "Second comment", textile_id: 1},
+  {suffix: "b", location: "1-1-1", comment: "Third comment", textile_id: 1},
+  {suffix: "", location: "1-3-2", comment: "Fourth comment", textile_id: 2},
+  {suffix: "a", location: "2-1-2", comment: "Fifth comment", textile_id: 2}
 ]
 arrival_list = [
-  [1, "10-10-2015", 45.55, "Some comment1"],
-  [2, "10-09-2015", 15.55, "Some comment2"],
-  [3, "10-08-2015", 25.55, "Some comment3"],
-  [4, "10-07-2015", 35.55, "Some comment4"],
-  [5, "10-06-2015", 75.55, "Some comment5"]
+  {roll_id: 1, arrival_date: "10-10-2015", total: 45.55, info: "Some comment1"},
+  {roll_id: 2, arrival_date: "10-09-2015", total: 15.55, info: "Some comment2"},
+  {roll_id: 3, arrival_date: "10-08-2015", total: 25.55, info: "Some comment3"},
+  {roll_id: 4, arrival_date: "10-07-2015", total: 35.55, info: "Some comment4"},
+  {roll_id: 5, arrival_date: "10-06-2015", total: 75.55, info: "Some comment5"}
 ]
 order_list = [
-  ["10-08-2015", "Customer1", "+380951234567", "active", "Ok.,,"],
-  ["10-07-2015", "Customer2", "+380951234565", "active", "Ok.,,"],
-  ["10-06-2015", "Customer3", "+380951234564", "active", "Ok.,,"]
+  {order_date: "10-08-2015", customer: "Customer1", customer_phone: "+380951234567", status: "active", order_comment: "Ok.,,"},
+  {order_date: "10-07-2015", customer: "Customer2", customer_phone: "+380951234565", status: "active", order_comment: "Ok.,,"},
+  {order_date: "10-06-2015", customer: "Customer3", customer_phone: "+380951234564", status: "active", order_comment: "Ok.,,"}
 ]
 order_item_list = [
-  [1, 1, 6.45, 999.99, "Comment1"],
-  [1, 2, 6.75, 999.99, "Comment2"],
-  [2, 1, 6.05, 999.99, "Comment3"],
-  [2, 3, 3.15, 999.99, "Comment4"],
-  [3, 2, 5.45, 999.99, "Comment5"]
+  {order_id: 1, roll_id: 1, amount_ordered: 6.45, price_sold: 999.99, item_comment: "Comment1"},
+  {order_id: 1, roll_id: 2, amount_ordered: 6.75, price_sold: 999.99, item_comment: "Comment2"},
+  {order_id: 2, roll_id: 1, amount_ordered: 6.05, price_sold: 999.99, item_comment: "Comment3"},
+  {order_id: 2, roll_id: 3, amount_ordered: 3.15, price_sold: 999.99, item_comment: "Comment4"},
+  {order_id: 3, roll_id: 2, amount_ordered: 5.45, price_sold: 999.99, item_comment: "Comment5"}
 ]
 store_receipt_list = [
-  [1, 6.45, "04-09-2015"],
-  [2, 6.75, "08-09-2015"],
-  [3, 6.05, "05-09-2015"],
-  [4, 3.15, "06-10-2015"],
-  [5, 5.45, "06-09-2015"]
+  {order_item_id: 1, receipt_amount: 6.45, receipt_date: "04-09-2015"},
+  {order_item_id: 2, receipt_amount: 6.75, receipt_date: "08-09-2015"},
+  {order_item_id: 3, receipt_amount: 6.05, receipt_date: "05-09-2015"},
+  {order_item_id: 4, receipt_amount: 3.15, receipt_date: "06-10-2015"},
+  {order_item_id: 5, receipt_amount: 5.45, receipt_date: "06-09-2015"}
 ]
 
-group_list.each { |name| Group.create(name: name) }
-
-textile_list.each do |code, name, country, manufacturer, man_code, height, units, price, group_id|
-  Textile.create(code: code,
-                  name: name,
-                  country: country,
-                  manufacturer: manufacturer,
-                  man_code: man_code,
-                  height: height,
-                  units: units,
-                  price: price,
-                  group_id: group_id)
-end
-
-roll_list.each do |suffix, location, comment, textile_id|
-  Roll.create(suffix: suffix, location: location, comment: comment, textile_id: textile_id)
-end
-
-arrival_list.each do |roll_id, arrival_date, total, info|
-  Arrival.create(roll_id: roll_id, arrival_date: arrival_date, total: total, info: info)
-end
-
-order_list.each do |order_date, customer, customer_phone, status, order_comment|
-  Order.create(order_date: order_date, customer: customer, customer_phone: customer_phone, status: status, order_comment: order_comment)
-end
-
-order_item_list.each do |order_id, roll_id, amount_ordered, price_sold, item_comment|
-  OrderItem.create(order_id: order_id, roll_id: roll_id, amount_ordered: amount_ordered, price_sold: price_sold, item_comment: item_comment)
-end
-
-store_receipt_list.each do |order_item_id, receipt_amount, receipt_date|
-  StoreReceipt.create(order_item_id: order_item_id, receipt_amount: receipt_amount, receipt_date: receipt_date)
-end
-
+Group.create(group_list)
+Textile.create(textile_list)
+Roll.create(roll_list)
+Arrival.create(arrival_list)
+Order.create(order_list)
+OrderItem.create(order_item_list)
+StoreReceipt.create(store_receipt_list)

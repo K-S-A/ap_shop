@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   get '/groupsearch/:name', to: 'search#find_group'
   get '/search1', to: 'search#find_gr'
 
+  get '/orders', to: 'orders#index'
+  post '/orders', to: 'orders#create'
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

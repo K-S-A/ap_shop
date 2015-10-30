@@ -6,7 +6,8 @@ angular.module('storeApp').controller 'OrdersCtrl', [
   '$modal'
   'textiles'
   'rollsFactory'
-  (_, $scope, $state, $log, $modal, textiles, rollsFactory) ->
+  'orders'
+  (_, $scope, $state, $log, $modal, textiles, rollsFactory, orders) ->
     $scope.textiles = textiles.textiles
     $scope.roll = {}
     $scope.statuses = [
@@ -49,6 +50,9 @@ angular.module('storeApp').controller 'OrdersCtrl', [
         size: 'lg')
       modalInstance.result.finally ->
         $scope.updateTotal()
+
+    $scope.addOrder = ->
+      orders.add(order: $scope.order)
 
     $scope.resetForm = ->
       $state.reload()

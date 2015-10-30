@@ -38,8 +38,7 @@ angular.module('storeApp').controller 'TextilesCtrl', [
 
     $scope.addRoll = (textile) ->
       rollsFactory.add($scope.roll, $scope.arrival).then (data) ->
-        _.each $scope.textiles, (textile) ->
-          textile.rolls.push data if textile.id is $scope.roll.textile_id
+        textile.rolls.push data
         $scope.resetForm(textile)
 
     $scope.deleteRoll = (id, textile) ->
