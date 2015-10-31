@@ -31,9 +31,9 @@ arrival_list = [
   {roll_id: 5, arrival_date: "10-06-2015", total: 75.55, info: "Some comment5"}
 ]
 order_list = [
-  {order_date: "10-08-2015", customer: "Customer1", customer_phone: "+380951234567", status: "active", order_comment: "Ok.,,"},
-  {order_date: "10-07-2015", customer: "Customer2", customer_phone: "+380951234565", status: "active", order_comment: "Ok.,,"},
-  {order_date: "10-06-2015", customer: "Customer3", customer_phone: "+380951234564", status: "active", order_comment: "Ok.,,"}
+  {number: "101", prepay: 100.00, discount: 0.00, order_date: "10-08-2015", customer: "Customer1", customer_phone: "+380951234567", status: "prepay", order_comment: "Ok.,,"},
+  {number: "102", prepay: 900.00, discount: 100.00, order_date: "10-07-2015", customer: "Customer2", customer_phone: "+380951234565", status: "active", order_comment: "Ok.,,"},
+  {number: "103", prepay: 1000.00, discount: 50.00, order_date: "10-06-2015", customer: "Customer3", customer_phone: "+380951234564", status: "processed", order_comment: "Ok.,,"}
 ]
 order_item_list = [
   {order_id: 1, roll_id: 1, amount_ordered: 6.45, price_sold: 999.99, item_comment: "Comment1"},

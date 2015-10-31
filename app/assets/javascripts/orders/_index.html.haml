@@ -1,0 +1,20 @@
+.list-group
+  %b.list-group-item.text-center.row
+    %span.col-xs-1 Number
+    %span.col-xs-1 Order date
+    %span.col-xs-1 Customer
+    %span.col-xs-1 Phone
+    %span.col-xs-1 Prepay
+    %span.col-xs-1 Discount
+    %span.col-xs-1 Left
+    %span.col-xs-1 Total
+    %span.col-xs-1 Status
+    %span.col-xs-1 Comment
+  .list-group-item.row{data: {ng_include: "'orders/_order_list.html'",
+  ng_repeat: "order in orders | orderBy : 'number'",
+  ng_class: "{'active': order.status == 'active',
+      'list-group-item-success': order.status == 'full payment',
+      'list-group-item-danger': order.status == 'unconfirmed',
+      'list-group-item-info': order.status == 'prepay',
+      'list-group-item-warning': order.status == 'processed'}"}}
+

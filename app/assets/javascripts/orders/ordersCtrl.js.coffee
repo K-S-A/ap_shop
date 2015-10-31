@@ -8,6 +8,7 @@ angular.module('storeApp').controller 'OrdersCtrl', [
   'rollsFactory'
   'orders'
   (_, $scope, $state, $log, $modal, textiles, rollsFactory, orders) ->
+    $scope.orders = orders.orders
     $scope.textiles = textiles.textiles
     $scope.roll = {}
     $scope.statuses = [
@@ -30,7 +31,7 @@ angular.module('storeApp').controller 'OrdersCtrl', [
       discount: 0
       total: 0
       order_items: [
-        {"roll_id":6,"price_sold":99.9,"name":"Textile3","left":1.0,"suffix":"a","code":"150577","item_comment":"", "amount_ordered": 1}
+        {"roll_id":5,"price_sold":99.9,"name":"Textile3","left":1.0,"suffix":"a","code":"150577","item_comment":"", "amount_ordered": 1}
         {"roll_id":3,"price_sold":999.99,"name":"Textile1","left":22.4,"suffix":"b","code":"150579","item_comment":"", "amount_ordered": 1}]
     $scope.total = 0
 

@@ -1,11 +1,11 @@
 class OrdersController < ApplicationController
 
   def index
-    render @orders = Order.all
+    @orders = Order.all
   end
 
   def create
-    render @order = Order.create(order_params)
+    @order = Order.create(order_params)
   end
 
 private
