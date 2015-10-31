@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20151008162950) do
     t.string   "status"
     t.string   "order_comment"
     t.decimal  "prepay",         precision: 8, scale: 2
-    t.decimal  "discount",       precision: 5, scale: 2
+    t.decimal  "discount",       precision: 6, scale: 2
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
   end

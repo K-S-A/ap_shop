@@ -8,7 +8,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :status
       t.string :order_comment
       t.decimal :prepay, precision: 8, scale: 2
-      t.decimal :discount, precision: 5, scale: 2
+      t.decimal :discount, precision: 6, scale: 2
 
       t.timestamps null: false
     end
