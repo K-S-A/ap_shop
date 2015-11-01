@@ -1,13 +1,11 @@
 class RollsController < ApplicationController
 
   def index
-    @rolls = Roll.all
+    @rolls = Roll.includes(:textile, :arrival).all
   end
 
   def show
     @roll = Roll.find(params[:id])
-
-    render @roll
   end
 
   def create

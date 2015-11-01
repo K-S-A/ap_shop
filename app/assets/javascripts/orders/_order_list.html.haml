@@ -5,7 +5,7 @@
 %span.col-xs-1 {{order.customer_phone}}
 %span.col-xs-1 {{order.prepay | currency : '' : 2}}
 %span.col-xs-1 {{order.discount | currency : '' : 2}}
-%span.col-xs-1 {{(order.total - order.prepay) | currency : '' : 2}}
+%span.col-xs-1 {{(order.total - order.prepay - order.discount) | currency : '' : 2}}
 %span.col-xs-1 {{order.total | currency : '' : 2}}
 %span.col-xs-1 {{order.status}}
 %pre.col-xs-3 {{order.order_comment}}

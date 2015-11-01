@@ -7,12 +7,4 @@ class Roll < ActiveRecord::Base
   delegate :group, :name, :code, :height, :country, :manufacturer, :man_code, :units, to: :textile
   delegate :total, :arrival_date, :info, to: :arrival
 
-  def sold
-    self.store_receipts.sum(:receipt_amount)
-  end
-
-  def left
-    self.total - self.sold
-  end
-
 end
