@@ -10,16 +10,16 @@
     %input.form-control{name: "location", type: "text", placeholder: "Location", data: {ng_model: "roll.location"}}/
   .col-md-2
     .form-group.has-feedback{data: {ng_class: "rollForm.total.$valid ? 'has-success': 'has-error'"}}
-      %input.form-control{name: "total", type: "number", min: "1", max: "100", required: true, placeholder: "Total", data: {ng_model: "arrival.total"}}/
+      %input.form-control{name: "total", type: "number", min: "1", max: "100", required: true, placeholder: "Total", data: {ng_model: "roll.arrival_attributes.total"}}/
       %span.form-control-feedback.glyphicon{data: {ng_class: "rollForm.total.$valid ? 'glyphicon-ok': 'glyphicon-remove'"}}
   .col-md-2
     .form-group.has-feedback{data: {ng_class: "rollForm.arrival_date.$valid ? 'has-success': 'has-error'"}}
       %input.form-control{name: "arrival_date", type: "text", placeholder: "Arrival Date (dd-mm-yyyy)", required: true,
-                          data: {ng_model: "arrival.arrival_date",
+                          data: {ng_model: "roll.arrival_attributes.arrival_date",
                                  ng_pattern: "datePattern"}}/
       %span.form-control-feedback.glyphicon{data: {ng_class: "rollForm.arrival_date.$valid ? 'glyphicon-ok': 'glyphicon-remove'"}}
   .col-md-2
-    %input.form-control{name: "info", type: "text", placeholder: "Arrival Info", data: {ng_model: "arrival.info"}}/
+    %input.form-control{name: "info", type: "text", placeholder: "Arrival Info", data: {ng_model: "roll.arrival_attributes.info"}}/
   .col-md-2
     %input.form-control{name: "comment", type: "text", placeholder: "Comment", data: {ng_model: "roll.comment"}}/
   .col-md-2

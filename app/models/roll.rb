@@ -1,6 +1,7 @@
 class Roll < ActiveRecord::Base
   belongs_to :textile
   has_one :arrival, dependent: :destroy
+  accepts_nested_attributes_for :arrival
   has_many :order_items
   has_many :store_receipts, through: :order_items
 

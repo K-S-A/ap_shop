@@ -13,13 +13,20 @@ angular.module('storeApp').factory 'rollsFactory', [
       $http.get('/rolls/' + id + '.json').then (res) ->
         res.data
 
-    o.add = (roll, arrival) ->
-      $http.post('/rolls.json', {roll: roll, arrival: arrival}).then (res) ->
-        res.data
+    o.add = (roll) ->
+      $http.post('/rolls.json', {roll: roll}).then (res) ->
+        res.data = o.calcRoll(res.data)
 
     o.delete = (id) ->
       $http.delete('/rolls/' + id + '.json').then (res) ->
-        res.data
+        res
+
+    o.calcRoll = (roll) ->
+      roll.left = _.reduce(roll.store_receipts, (memo, store_receipt) ->
+        memo - store_receipt.receipt_amount
+      roll.total)
+      roll.sold = roll.total - roll.left
+      roll
 
     o
 ]

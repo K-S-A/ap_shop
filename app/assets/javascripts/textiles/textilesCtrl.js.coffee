@@ -37,13 +37,13 @@ angular.module('storeApp').controller 'TextilesCtrl', [
       $scope.searchTextile()
 
     $scope.addRoll = (textile) ->
-      rollsFactory.add($scope.roll, $scope.arrival).then (data) ->
+      rollsFactory.add($scope.roll).then (data) ->
         textile.rolls.push data
         $scope.resetForm(textile)
 
     $scope.deleteRoll = (id, textile) ->
-      rollsFactory.delete(id).then (data) ->
+      rollsFactory.delete(id).then (res) ->
         textile.rolls = _.reject(textile.rolls, (roll) ->
-          roll.id is data.id)
+          roll.id is id)
 
 ]

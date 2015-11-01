@@ -1,7 +1,7 @@
 class RollsController < ApplicationController
 
   def index
-    @rolls = Roll.includes(:textile, :arrival).all
+    @rolls = Roll.includes(:textile, :arrival, :store_receipts).all
   end
 
   def show
@@ -10,28 +10,18 @@ class RollsController < ApplicationController
 
   def create
     @roll = Roll.create(roll_params)
-    @arrival = Arrival.new(arrival_params)
-    @arrival.roll = @roll
-    @arrival.save
-
-    render @roll
   end
 
   def destroy
-    @roll = Roll.find(params[:id])
-    @roll.destroy
+    @roll = Roll.find(params[:id]).destroy
 
-    render @roll
+    render nothing: true
   end
 
 private
 
   def roll_params
-    params.require(:roll).permit(:textile_id, :suffix, :location, :comment)
-  end
-
-  def arrival_params
-    params.require(:arrival).permit(:total, :arrival_date, :info)
+    params.require(:roll).permit(:textile_id, :suffix, :location, :comment, arrival_attributes: [:total, :arrival_date, :info])
   end
 
 end
