@@ -1,10 +1,11 @@
-%span.col-xs-1 {{order.number}}
-%span.col-xs-1 {{order.order_date}}
+.col-xs-2
+  %span.col-xs-4 {{order.number}}
+  %span.col-xs-8 {{order.order_date | date : 'mediumDate'}}
 %span.col-xs-1 {{order.customer}}
 %span.col-xs-1 {{order.customer_phone}}
-%span.col-xs-1 {{order.prepay}}
-%span.col-xs-1 {{order.discount}}
-%span.col-xs-1 {{order.total - order.prepay}}
-%span.col-xs-1 {{order.total}}
+%span.col-xs-1 {{order.prepay | currency : '' : 2}}
+%span.col-xs-1 {{order.discount | currency : '' : 2}}
+%span.col-xs-1 {{(order.total - order.prepay) | currency : '' : 2}}
+%span.col-xs-1 {{order.total | currency : '' : 2}}
 %span.col-xs-1 {{order.status}}
-%span.col-xs-1 {{order.order_comment}}
+%pre.col-xs-3 {{order.order_comment}}

@@ -53,7 +53,8 @@ angular.module('storeApp').controller 'OrdersCtrl', [
         $scope.updateTotal()
 
     $scope.addOrder = ->
-      orders.add(order: $scope.order)
+      orders.add(order: $scope.order).then ->
+        $state.go 'orders'
 
     $scope.resetForm = ->
       $state.reload()
