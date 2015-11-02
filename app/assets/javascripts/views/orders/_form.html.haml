@@ -12,7 +12,7 @@
         .col-xs-2
           .form-group.has-feedback{'show-validation': true}
             %label{for: "number"} Order Number:
-            %input.form-control{name: "number", type: "text", placeholder: "Number", required: true, data: {ng_model: "order.number",
+            %input.form-control{name: "number", type: "text", placeholder: "Number", required: true,data: {ng_model: "order.number",
                                 ng_change: "order.number = order.number.toLowerCase()"}}/
             %span.form-control-feedback.glyphicon
         .col-xs-3
@@ -48,8 +48,7 @@
           .form-group.has-feedback{'show-validation': true}
             %label{for: "discount"} Discount, &#8372:
             %input.form-control{name: "discount", type: "number", min: "0", placeholder: "Discount Amount (in UAH, eq. 100.00)",
-                                'select-on-click': true, data: {ng_model: "order.discount",
-                                ng_change: "order.discount = (order.discount > total) ? total : Math.round(order.discount * 100) / 100"}}/
+                                'select-on-click': true, data: {ng_model: "order.discount", ng_change: "checkDiscount()"}}/
             %span.form-control-feedback.glyphicon
         .col-xs-2
           .form-group
