@@ -24,7 +24,7 @@ angular.module('storeApp').controller 'OrdersCtrl', [
 
     $scope.addItem = ->
       modalInstance = $modal.open(
-        templateUrl: 'textiles/_index.html'
+        templateUrl: 'views/textiles/_index.html'
         controller: 'TextilesCtrl'
         scope: $scope
         size: 'lg')

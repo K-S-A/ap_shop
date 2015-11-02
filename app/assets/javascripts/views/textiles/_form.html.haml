@@ -1,10 +1,7 @@
-/ Notice
-.alert.alert-success.fade.in{data: {ng_show: "message", ng_click: "message = false"}}
-  %strong {{message}}
 .panel.panel-info
   .panel-heading
     %form{name: "textileForm", role: "form", novalidate: true, data: {ng_submit: "addGroup()"}}
-      %fieldset{data: {ng_disabled: "message"}}
+      %fieldset
         .row
           / Title
           .form-group.col-md-6

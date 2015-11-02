@@ -13,15 +13,15 @@ angular.module('storeApp', [
   ($stateProvider, $urlRouterProvider) ->
     $stateProvider.state('textiles',
       url: '/textiles'
-      templateUrl: 'textiles/_index.html'
+      templateUrl: 'views/textiles/_index.html'
       controller: 'TextilesCtrl')
     .state('newOrder',
       url: '/newOrder'
-      templateUrl: 'orders/_form.html'
+      templateUrl: 'views/orders/_form.html'
       controller: 'OrdersCtrl')
     .state('orders',
       url: '/orders'
-      templateUrl: 'orders/_index.html'
+      templateUrl: 'views/orders/_index.html'
       controller: 'OrdersCtrl'
       resolve: ordersPromise: [
         'orders'
@@ -29,7 +29,7 @@ angular.module('storeApp', [
           orders.getAll()])
     .state('editOrder',
       url: '/editOrder/:id'
-      templateUrl: 'orders/_form.html'
+      templateUrl: 'views/orders/_form.html'
       controller: 'OrdersCtrl'
       resolve: order: [
         '$stateParams'
