@@ -1,4 +1,4 @@
-'use strict'
+"use strict"
 
 angular.module('storeApp', [
   'ui.bootstrap'
@@ -26,7 +26,16 @@ angular.module('storeApp', [
       resolve: ordersPromise: [
         'orders'
         (orders) ->
-          orders.getAll()
+          orders.getAll()])
+    .state('editOrder',
+      url: '/editOrder/:id'
+      templateUrl: 'orders/_form.html'
+      controller: 'OrdersCtrl'
+      resolve: order: [
+        '$stateParams'
+        'orders'
+        ($stateParams, orders) ->
+          orders.get $stateParams.id
       ])
 
     $urlRouterProvider.otherwise 'textiles'

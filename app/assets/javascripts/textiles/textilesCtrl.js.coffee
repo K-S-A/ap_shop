@@ -1,3 +1,5 @@
+"use strict"
+
 angular.module('storeApp').controller 'TextilesCtrl', [
   '_'
   '$scope'
@@ -5,6 +7,7 @@ angular.module('storeApp').controller 'TextilesCtrl', [
   'textiles'
   'rollsFactory'
   (_, $scope, $state, textiles, rollsFactory) ->
+    $scope.roll = {}
     $scope.textiles = textiles.textiles
     $scope.obj =
       code: null
@@ -29,7 +32,6 @@ angular.module('storeApp').controller 'TextilesCtrl', [
     $scope.searchTextile = ->
       textiles.getAll($scope.obj.code, $scope.obj.name)
       $scope.roll.textile_id = false
-      return
 
     $scope.repeatSearch = (search) ->
       $scope.obj.code = search.code

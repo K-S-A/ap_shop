@@ -1,11 +1,11 @@
-.col-xs-2
-  %span.col-xs-4 {{order.number}}
-  %span.col-xs-8 {{order.order_date | date : 'mediumDate'}}
-%span.col-xs-1 {{order.customer}}
+.col-xs-3
+  %span.col-xs-2 {{order.number}}
+  %span.col-xs-5 {{order.order_date | date : 'mediumDate'}}
+  %span.col-xs-5 {{order.customer}}
 %span.col-xs-1 {{order.customer_phone}}
 %span.col-xs-1 {{order.prepay | currency : '' : 2}}
 %span.col-xs-1 {{order.discount | currency : '' : 2}}
 %span.col-xs-1 {{(order.total - order.prepay - order.discount) | currency : '' : 2}}
 %span.col-xs-1 {{order.total | currency : '' : 2}}
 %span.col-xs-1 {{order.status}}
-%pre.col-xs-3 {{order.order_comment}}
+%pre.col-xs-3{data: {ng_if: "order.order_comment"}} {{order.order_comment}}

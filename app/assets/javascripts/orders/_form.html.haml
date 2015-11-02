@@ -1,7 +1,7 @@
 %form{name: "orderForm", role: "form", novalidate: true, data: {ng_submit: "addOrder()"}}
   .btn-group.btn-group-justified
     .btn-group
-      %button.btn.btn-default{type: "button", data: {ui_sref: "textiles"}} Close Form
+      %button.btn.btn-default{type: "button", data: {ui_sref: "orders"}} Close Form
     .btn-group
       %button.btn.btn-info{type: "button", data: {ng_click: "resetForm()"}} Reset Form
     .btn-group
@@ -48,7 +48,7 @@
           .form-group
             %label Total, &#8372:
             %b
-              %p.form-control-static {{total | currency : '' : 2}}
+              %p.form-control-static {{(total - order.discount) | currency : '' : 2}}
     .col-xs-4
       .form-group
         %label{for: "order_comment"} Comment:

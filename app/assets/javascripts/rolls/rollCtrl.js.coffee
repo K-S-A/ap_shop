@@ -1,3 +1,5 @@
+"use strict"
+
 angular.module('storeApp').controller 'RollCtrl', [
   '$scope'
   'getRoll'

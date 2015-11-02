@@ -1,4 +1,4 @@
-'use strict'
+"use strict"
 
 angular.module('storeApp').directive 'ensureUnique', [
   '_'
