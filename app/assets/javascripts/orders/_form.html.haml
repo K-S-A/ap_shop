@@ -12,22 +12,26 @@
         .col-xs-2
           .form-group.has-feedback{'show-validation': true}
             %label{for: "number"} Order Number:
-            %input.form-control{name: "number", type: "text", placeholder: "Number", required: true, data: {ng_model: "order.number", ng_change: "order.number = order.number.toLowerCase()"}}/
+            %input.form-control{name: "number", type: "text", placeholder: "Number", required: true, data: {ng_model: "order.number",
+                                ng_change: "order.number = order.number.toLowerCase()"}}/
             %span.form-control-feedback.glyphicon
         .col-xs-3
           .form-group.has-feedback{'show-validation': true}
             %label{for: "customer_phone"} Phone Number:
-            %input.form-control{name: "customer_phone", type: "text", autofocus: true, 'select-on-click': true, placeholder: "Customer's Phone", data: {ng_model: "order.customer_phone"}}/
+            %input.form-control{name: "customer_phone", type: "text", autofocus: true, 'select-on-click': true, placeholder: "Customer's Phone",
+                                data: {ng_model: "order.customer_phone"}}/
             %span.form-control-feedback.glyphicon
         .col-xs-2
           .form-group.has-feedback{'show-validation': true}
             %label{for: "prepay"} Prepay, &#8372:
-            %input.form-control{name: "prepay", type: "number", min: "0", placeholder: "Prepay Amount (eq. UAH 100.00)", 'select-on-click': true, data: {ng_model: "order.prepay", ng_blur: "checkStatus()"}}/
+            %input.form-control{name: "prepay", type: "number", min: "0", placeholder: "Prepay Amount (eq. UAH 100.00)", 'select-on-click': true,
+                                data: {ng_model: "order.prepay", ng_blur: "checkStatus()"}}/
             %span.form-control-feedback.glyphicon
         .col-xs-3
           .form-group.has-feedback{'show-validation': true}
             %label{for: "order_date"} Order Date:
-            %input.form-control{name: "order_date", type: "text", placeholder: "Order Date (dd-mm-yyyy)", required: true, data: {ng_model: "order.order_date"}}/
+            %input.form-control{name: "order_date", type: "text", placeholder: "Order Date (dd-mm-yyyy)", required: true,
+                                data: {ng_model: "order.order_date"}}/
             %span.form-control-feedback.glyphicon
         .col-xs-2
           .form-group{'show-validation': true}
@@ -37,12 +41,15 @@
         .col-xs-7
           .form-group.has-feedback{'show-validation': true}
             %label{for: "customer"} Customer:
-            %input.form-control{name: "customer", type: "text", placeholder: "Customer's Name", required: true, 'select-on-click': true, data: {ng_model: "order.customer"}}/
+            %input.form-control{name: "customer", type: "text", placeholder: "Customer's Name", required: true, 'select-on-click': true,
+                                data: {ng_model: "order.customer"}}/
             %span.form-control-feedback.glyphicon
         .col-xs-3
           .form-group.has-feedback{'show-validation': true}
             %label{for: "discount"} Discount, &#8372:
-            %input.form-control{name: "discount", type: "number", min: "0", placeholder: "Discount Amount (in UAH, eq. 100.00)", 'select-on-click': true, data: {ng_model: "order.discount", ng_change: "checkDiscount()"}}/
+            %input.form-control{name: "discount", type: "number", min: "0", placeholder: "Discount Amount (in UAH, eq. 100.00)",
+                                'select-on-click': true, data: {ng_model: "order.discount",
+                                ng_change: "order.discount = (order.discount > total) ? total : Math.round(order.discount * 100) / 100"}}/
             %span.form-control-feedback.glyphicon
         .col-xs-2
           .form-group
@@ -52,7 +59,8 @@
     .col-xs-4
       .form-group
         %label{for: "order_comment"} Comment:
-        %textarea.form-control{name: "order_comment", type: "text", rows: "4", style: "resize: none;", placeholder: "Comment goes here ...", data: {ng_model: "order.order_comment"}}
+        %textarea.form-control{name: "order_comment", type: "text", rows: "4", style: "resize: none;", placeholder: "Comment goes here ...",
+                               data: {ng_model: "order.order_comment"}}
   .row
   .btn-group.btn-group-justified
     .btn-group
@@ -60,7 +68,7 @@
     .btn-group{data: {ng_if: "order.order_items.length > 0"}}
       %button.btn.btn-lg.btn-warning{type: "button", data: {ng_click: "removeItem()"}} Remove Selected
     .btn-group{data: {ng_if: "order.order_items.length > 0"}}
-      %button.btn.btn-lg.btn-danger{type: "button", data: {ng_click: "clearItems()"}} Remove All
+      %button.btn.btn-lg.btn-danger{type: "button", data: {ng_click: "order.order_items = []"}} Remove All
   .row.list-group
     .col-xs-12
       .list-group-item.text-center

@@ -38,9 +38,6 @@ angular.module('storeApp').controller 'OrdersCtrl', [
     $scope.resetForm = ->
       $state.reload()
 
-    $scope.clearItems =->
-      $scope.order.order_items = []
-
     $scope.removeItem = ->
       $scope.order.order_items = _.reject($scope.order.order_items, (order_item) ->
         order_item.selected)

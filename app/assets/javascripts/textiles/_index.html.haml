@@ -17,4 +17,5 @@
       %input.form-control{name: "name", type: "text", placeholder: "Textile Name", data: {ng_model: "obj.name"}}/
     .col-md-3
       %button.col-md-12.btn.btn-lg.btn-danger{type: "submit"} Start search!
-.panel{data: {ng_include: "'textiles/_textile.html'", ng_repeat: "textile in textiles | orderBy : 'code'", ng_class: "textile.code === obj.code ? 'panel-primary' : 'panel-info'"}}
+.panel{data: {ng_include: "'textiles/_textile.html'", ng_repeat: "textile in textiles | orderBy : 'code'",
+              ng_class: "textile.code === obj.code ? 'panel-primary' : 'panel-info'"}}
