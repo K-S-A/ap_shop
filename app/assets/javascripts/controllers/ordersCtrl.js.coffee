@@ -40,6 +40,10 @@ angular.module('storeApp').controller 'OrdersCtrl', [
     $scope.removeItem = ->
       $scope.order.order_items = _.reject($scope.order.order_items, (order_item) ->
         order_item.selected)
+      $scope.updateTotal()
+      $scope.checkDiscount()
+      $scope.checkStatus()
+
 
     $scope.checkDiscount = ->
       $scope.order.discount = if ($scope.order.discount > $scope.order.total) then $scope.order.total else Math.round($scope.order.discount * 100) / 100
@@ -51,8 +55,8 @@ angular.module('storeApp').controller 'OrdersCtrl', [
         else $scope.statuses[0]
 
     $scope.selectRoll = (roll_id, price, name, left, suffix, code) ->
-      if !_.some($scope.order.order_items, {roll_id: roll_id, price_sold: Number(price)})
-        order_item = {roll_id: roll_id, price_sold: Number(price), amount_ordered: 1, name: name, left: Number(left), suffix: suffix, code: code, item_comment: ""}
+      if !_.some($scope.order.order_items, {roll_id: roll_id, price_sold: price})
+        order_item = {roll_id: roll_id, price_sold: price, amount_ordered: 1, name: name, left: left, suffix: suffix, code: code, item_comment: ""}
         $scope.order.order_items.push order_item
 
 ]

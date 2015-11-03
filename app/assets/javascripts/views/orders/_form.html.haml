@@ -67,7 +67,7 @@
     .btn-group{data: {ng_if: "order.order_items.length > 0"}}
       %button.btn.btn-lg.btn-warning{type: "button", data: {ng_click: "removeItem()"}} Remove Selected
     .btn-group{data: {ng_if: "order.order_items.length > 0"}}
-      %button.btn.btn-lg.btn-danger{type: "button", data: {ng_click: "order.order_items = []"}} Remove All
+      %button.btn.btn-lg.btn-danger{type: "button", data: {ng_click: "order.order_items = []; updateTotal(); checkDiscount(); checkStatus()"}} Remove All
   .row.list-group
     .col-xs-12
       .list-group-item.text-center
