@@ -5,20 +5,10 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'application#home'
 
-  get '/groups', to: 'groups#index'
-  post '/groups', to: 'groups#create'
-  get '/textiles', to: 'textiles#index'
-  get '/rolls', to: 'rolls#index'
-  get '/rolls/:id', to: 'rolls#show'
-  post '/rolls', to: 'rolls#create'
-  delete '/rolls/:id', to: 'rolls#destroy'
-  get '/search/:code', to: 'search#find_item'
-  get '/groupsearch/:name', to: 'search#find_group'
-  get '/search1', to: 'search#find_gr'
-
-  get '/orders', to: 'orders#index'
-  post '/orders', to: 'orders#create'
-
+  resources :groups, only: [:index, :create]
+  resources :textiles, only: [:index]
+  resources :rolls, only: [:index, :show, :create, :destroy]
+  resources :orders, only: [:index, :show, :create]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

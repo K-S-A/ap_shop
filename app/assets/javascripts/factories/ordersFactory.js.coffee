@@ -33,10 +33,20 @@ angular.module('storeApp').factory 'orders', [
     o.getAll = ->
       $http.get('/orders.json').success (data) ->
         _.each(data, (order) ->
-          order.total = _.reduce(order.order_items, (memo, order_item) ->
-            memo + order_item.amount_ordered * order_item.price_sold
-          0))
+          order.total = o.calcTotal(order.order_items))
         angular.copy data, o.orders
+
+    o.get = (id) ->
+      $http.get('/orders/' + id + '.json').success (data) ->
+        data.total = o.calcTotal(data.order_items)
+        angular.copy data, o.order
+
+    o.calcTotal = (order_items) ->
+      _.reduce(order_items, (memo, order_item) ->
+       memo + order_item.amount_ordered * order_item.price_sold
+      0)
+
+
 
     o
 ]

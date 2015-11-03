@@ -54,7 +54,7 @@
           .form-group
             %label Total, &#8372:
             %b
-              %p.form-control-static {{(total - order.discount) | currency : '' : 2}}
+              %p.form-control-static {{(order.total - order.discount) | currency : '' : 2}}
     .col-xs-4
       .form-group
         %label{for: "order_comment"} Comment:

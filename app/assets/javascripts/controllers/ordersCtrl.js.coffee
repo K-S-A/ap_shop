@@ -14,11 +14,10 @@ angular.module('storeApp').controller 'OrdersCtrl', [
     $scope.statuses = orders.statuses
     $scope.orders = orders.orders
     $scope.order = orders.order
-    $scope.total = 0
     $scope.roll = {}
 
     $scope.updateTotal = ->
-      $scope.total = Math.round(_.reduce($scope.order.order_items, (memo, order_item)->
+      $scope.order.total = Math.round(_.reduce($scope.order.order_items, (memo, order_item)->
         memo + (order_item.amount_ordered ||= order_item.left) * (order_item.price_sold ||= 0.01)
       0) * 100) / 100
 
@@ -43,11 +42,11 @@ angular.module('storeApp').controller 'OrdersCtrl', [
         order_item.selected)
 
     $scope.checkDiscount = ->
-      $scope.order.discount = if ($scope.order.discount > $scope.total) then $scope.total else Math.round($scope.order.discount * 100) / 100
+      $scope.order.discount = if ($scope.order.discount > $scope.order.total) then $scope.order.total else Math.round($scope.order.discount * 100) / 100
 
     $scope.checkStatus = ->
       $scope.order.status = switch
-        when $scope.order.prepay >= $scope.total then $scope.statuses[2]
+        when $scope.order.prepay >= $scope.order.total then $scope.statuses[2]
         when $scope.order.prepay > 0 then $scope.statuses[1]
         else $scope.statuses[0]
 

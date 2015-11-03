@@ -15,7 +15,7 @@
           %span.form-control-feedback.glyphicon
       .col-xs-6
         .form-group.has-feedback{'show-validation': true}
-          %input.col-xs-12.form-control{type: "number", 'dynamic-name': "'amount' + $index", required: true, min: "0", max: "{{order_item.left}}",
+          %input.col-xs-12.form-control{type: "number", 'dynamic-name': "'amount' + $index", required: true, min: "0.01", max: "{{order_item.left}}",
                                         'select-on-click': true, data: {ng_model: "order_item.amount_ordered", ng_change: "updateTotal()"}}/
           %span.form-control-feedback.glyphicon
   .col-xs-1

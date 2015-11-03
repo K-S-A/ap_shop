@@ -31,7 +31,7 @@ angular.module('storeApp', [
       url: '/editOrder/:id'
       templateUrl: 'views/orders/_form.html'
       controller: 'OrdersCtrl'
-      resolve: order: [
+      resolve: orderPromise: [
         '$stateParams'
         'orders'
         ($stateParams, orders) ->
