@@ -12,7 +12,7 @@
     %span.col-xs-1 Status
     %span.col-xs-3 Comment
   .list-group-item.row{data: {ng_include: "'views/orders/_order_list.html'",
-  ng_repeat: "order in orders | orderBy : ['-order_date', '-id']",
+  ng_repeat: "order in vm.orders | orderBy : ['-order_date', '-id']",
   ng_class: "{'active': order.status == 'active',
               'list-group-item-success': order.status == 'full payment',
               'list-group-item-danger': order.status == 'unconfirmed',

@@ -18,11 +18,11 @@ angular.module('storeApp', [
     .state('newOrder',
       url: '/newOrder'
       templateUrl: 'views/orders/_form.html'
-      controller: 'OrdersCtrl')
+      controller: 'OrdersCtrl as vm')
     .state('orders',
       url: '/orders'
       templateUrl: 'views/orders/_index.html'
-      controller: 'OrdersCtrl'
+      controller: 'OrdersCtrl as vm'
       resolve: ordersPromise: [
         'orders'
         (orders) ->
@@ -30,7 +30,7 @@ angular.module('storeApp', [
     .state('editOrder',
       url: '/editOrder/:id'
       templateUrl: 'views/orders/_form.html'
-      controller: 'OrdersCtrl'
+      controller: 'OrdersCtrl as vm'
       resolve: orderPromise: [
         '$stateParams'
         'orders'

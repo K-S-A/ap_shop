@@ -1,8 +1,9 @@
 "use strict"
 
 angular.module('storeApp').factory 'orders', [
+  '_'
   '$http'
-  ($http) ->
+  (_, $http) ->
     o =
       orders: []
       order:
@@ -46,7 +47,33 @@ angular.module('storeApp').factory 'orders', [
        memo + order_item.amount_ordered * order_item.price_sold
       0)
 
+    o.updateTotal = ->
+      o.order.total = Math.round(_.reduce(o.order.order_items, (memo, order_item)->
+        memo + (order_item.amount_ordered ||= order_item.left) * (order_item.price_sold ||= 0.01)
+      0) * 100) / 100
 
+    o.removeItem = (remove_all) ->
+      o.order.order_items = if remove_all
+        []
+      else
+        _.reject(o.order.order_items, (order_item) ->
+          order_item.selected)
+      o.updateTotal()
+      o.checkDiscount()
+
+    o.checkDiscount = ->
+      o.order.discount = if (o.order.discount > o.order.total) then o.order.total else Math.round(o.order.discount * 100) / 100
+
+    o.checkStatus = ->
+      o.order.status = switch
+        when o.order.prepay >= o.order.total then o.statuses[2]
+        when o.order.prepay > 0 then o.statuses[1]
+        else o.statuses[0]
+
+    o.selectRoll = (roll_id, price, name, left, suffix, code) ->
+      if !_.some(o.order.order_items, {roll_id: roll_id, price_sold: price})
+        order_item = {roll_id: roll_id, price_sold: price, amount_ordered: 1, name: name, left: left, suffix: suffix, code: code}
+        o.order.order_items.push order_item
 
     o
 ]

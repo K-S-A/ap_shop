@@ -15,4 +15,4 @@
     ng_mouseenter: "roll.show_delete = true",
     ng_mouseleave: "roll.show_delete = false",
     ng_class: "{'active': roll.show_delete}",
-    ng_click: "selectRoll(roll.id, textile.price, textile.name, roll.left, roll.suffix, textile.code)"}}
+    ng_click: "$parent.selectRoll(roll.id, textile.price, textile.name, roll.left, roll.suffix, textile.code)"}}
