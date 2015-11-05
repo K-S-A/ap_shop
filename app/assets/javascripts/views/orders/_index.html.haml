@@ -1,5 +1,7 @@
+.btn-group.btn-group-justified
+  .btn.btn-success.btn-lg{data: {ui_sref: "newOrder"}} New Order
 .list-group
-  %b.list-group-item.text-center.row
+  %b.row.list-group-item.text-center
     .col-xs-3
       %span.col-xs-2 Number
       %span.col-xs-5 Order date
@@ -11,8 +13,9 @@
     %span.col-xs-1 Total
     %span.col-xs-1 Status
     %span.col-xs-3 Comment
-  .list-group-item.row{data: {ng_include: "'views/orders/_order_list.html'",
+  .row.list-group-item{data: {ng_include: "'views/orders/_order_list.html'",
   ng_repeat: "order in vm.orders | orderBy : ['-order_date', '-id']",
+  ui_sref: "editOrder({id: order.id})",
   ng_class: "{'active': order.status == 'active',
               'list-group-item-success': order.status == 'full payment',
               'list-group-item-danger': order.status == 'unconfirmed',

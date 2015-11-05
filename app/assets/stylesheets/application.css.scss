@@ -29,3 +29,7 @@ input[type=number]::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance:textfield;
 }
+
+.row.list-group-item:hover {
+  background-color: green;
+}

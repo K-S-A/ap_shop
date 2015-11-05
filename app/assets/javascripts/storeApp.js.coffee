@@ -9,7 +9,8 @@ angular.module('storeApp', [
   '$stateProvider'
   '$urlRouterProvider'
   ($stateProvider, $urlRouterProvider) ->
-    $stateProvider.state('textiles',
+    $stateProvider
+    .state('textiles',
       url: '/textiles'
       templateUrl: 'views/textiles/_index.html'
       controller: 'TextilesCtrl as vm')
