@@ -7,45 +7,35 @@ angular.module('storeApp').controller 'TextilesCtrl', [
   'textiles'
   'rollsFactory'
   (_, $scope, $state, textiles, rollsFactory) ->
-    $scope.roll = {}
-    $scope.textiles = textiles.textiles
-    $scope.obj =
-      code: null
-      suffix: "*"
-      name: null
-      searches: textiles.searches
-    $scope.datePattern = new RegExp("^([1-9]|0[1-9]|[1-2]\\d|3[0-1])\\W([1-9]|0[1-9]|1[1-2])\\W(19|" + new Date().getFullYear().toString().slice(0,2) + ")\\d{2}$")
+    vm = this
+    vm.roll = textiles.roll
+    vm.arrival = textiles.arrival
+    vm.textiles = textiles.textiles
+    vm.obj = textiles.obj
+    vm.datePattern = rollsFactory.datePattern
 
-    $scope.resetForm = (textile) ->
-      textile.new = if textile.new then null else textile.id
-      sfx = if textile.rolls.length is 0
-        ""
-      else
-        suffixes = _.map(textile.rolls, (roll) ->
-          roll.suffix)
-        _.difference("abcdefghijklmnopqrstuvwxyz".split(''), suffixes)[0]
-      $scope.roll =
-        suffix: sfx
-        textile_id: textile.new
-      $scope.arrival = {}
+    vm.resetForm = (textile) ->
+      textiles.resetForm(textile)
 
-    $scope.searchTextile = ->
-      textiles.getAll($scope.obj.code, $scope.obj.name)
-      $scope.roll.textile_id = false
+    vm.searchTextile = ->
+      textiles.searchTextile()
 
-    $scope.repeatSearch = (search) ->
-      $scope.obj.code = search.code
-      $scope.obj.name = search.name
-      $scope.searchTextile()
+    vm.addRoll = (textile) ->
+      rollsFactory.add(vm.roll).then (data) ->
+        textiles.addRoll(textile, data)
+        textiles.resetForm(textile)
 
-    $scope.addRoll = (textile) ->
-      rollsFactory.add($scope.roll).then (data) ->
-        textile.rolls.push data
-        $scope.resetForm(textile)
-
-    $scope.deleteRoll = (id, textile) ->
+    vm.deleteRoll = (id, textile) ->
       rollsFactory.delete(id).then (res) ->
-        textile.rolls = _.reject(textile.rolls, (roll) ->
-          roll.id is id)
+        textiles.deleteRoll(id, textile)
 
+    vm.repeatSearch = ($index) ->
+      textiles.repeatSearch($index)
+      textiles.searchTextile()
+
+    vm.removeSearch = ($event, $index) ->
+       $event.stopPropagation()
+       textiles.removeSearch($index)
+
+    vm
 ]

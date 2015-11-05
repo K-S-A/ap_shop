@@ -15,9 +15,7 @@ angular.module('storeApp').factory 'orders', [
         status: 'unconfirmed'
         prepay: 0
         discount: 0
-        order_items: [
-          {"roll_id":5,"price_sold":99.9,"name":"Textile3","left":1.0,"suffix":"a","code":"150577","item_comment":"", "amount_ordered": 1}
-          {"roll_id":3,"price_sold":999.99,"name":"Textile1","left":22.4,"suffix":"b","code":"150579","item_comment":"", "amount_ordered": 1}]
+        order_items: []
       statuses: [
         'unconfirmed'
         'prepaid'

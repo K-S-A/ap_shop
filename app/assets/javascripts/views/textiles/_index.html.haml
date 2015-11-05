@@ -1,21 +1,21 @@
-%span{data: {ng_if: "obj.searches.length > 0"}} Search history:
-%a.btn.btn-info.btn-sm{data: {ng_repeat: "search in obj.searches", ng_click: "repeatSearch(search)"}}
+%span{data: {ng_if: "vm.obj.searches.length > 0"}} Search history:
+%a.btn.btn-info.btn-sm{data: {ng_repeat: "search in vm.obj.searches", ng_click: "vm.repeatSearch($index)"}}
   %span _{{search.code}}_
   %span "{{search.name}}"
-  %span.glyphicon.glyphicon-remove{data: {ng_click: "obj.searches.splice($index, 1); stopPropagation()"}}
-%form{name: "textileForm", role: "form", novalidate: true, data: {ng_submit: "searchTextile()"}}
+  %span.glyphicon.glyphicon-remove{data: {ng_click: "vm.removeSearch($event, $index)"}}
+%form{name: "textileForm", role: "form", novalidate: true, data: {ng_submit: "vm.searchTextile()"}}
   %h2 Find textile
   .row
     .col-md-2.form-group
       %label{for: "code"} Code:
-      %input.form-control{name: "code", type: "text", placeholder: "Textile Code", data: {ng_model: "obj.code"}}/
+      %input.form-control{name: "code", type: "text", placeholder: "Textile Code", data: {ng_model: "vm.obj.code"}}/
     .col-md-1.form-group
       %label{for: "roll"} Letter:
-      %input.form-control{name: "roll", type: "text", data: {ng_model: "obj.suffix", ng_change: "obj.suffix = obj.suffix.toLowerCase()"}}/
+      %input.form-control{name: "roll", type: "text", data: {ng_model: "vm.obj.suffix", ng_change: "vm.obj.suffix = vm.obj.suffix.toLowerCase()"}}/
     .col-md-6.form-group
       %label{for: "name"} Name:
-      %input.form-control{name: "name", type: "text", placeholder: "Textile Name", data: {ng_model: "obj.name"}}/
+      %input.form-control{name: "name", type: "text", placeholder: "Textile Name", data: {ng_model: "vm.obj.name"}}/
     .col-md-3
       %button.col-md-12.btn.btn-lg.btn-danger{type: "submit"} Start search!
-.panel{data: {ng_include: "'views/textiles/_textile.html'", ng_repeat: "textile in textiles | orderBy : 'code'",
-              ng_class: "textile.code === obj.code ? 'panel-primary' : 'panel-info'"}}
+.panel{data: {ng_include: "'views/textiles/_textile.html'", ng_repeat: "textile in vm.textiles | orderBy : 'code'",
+              ng_class: "textile.code === vm.obj.code ? 'panel-primary' : 'panel-info'"}}

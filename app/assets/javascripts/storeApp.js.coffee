@@ -2,11 +2,9 @@
 
 angular.module('storeApp', [
   'ui.bootstrap'
-  'dndLists'
   'ui.router'
   'templates'
   'underscore'
-  'Devise'
 ]).config [
   '$stateProvider'
   '$urlRouterProvider'
@@ -14,7 +12,7 @@ angular.module('storeApp', [
     $stateProvider.state('textiles',
       url: '/textiles'
       templateUrl: 'views/textiles/_index.html'
-      controller: 'TextilesCtrl')
+      controller: 'TextilesCtrl as vm')
     .state('newOrder',
       url: '/newOrder'
       templateUrl: 'views/orders/_form.html'

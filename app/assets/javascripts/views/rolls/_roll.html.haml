@@ -1,5 +1,5 @@
 %span.btn.btn-xs.btn-success.glyphicon.glyphicon-ok{data: {ng_if: "!roll.show_delete"}}
-%span.btn.btn-xs.btn-danger.glyphicon.glyphicon-remove{data: {ng_click: "deleteRoll(roll.id, textile)", ng_if: "roll.show_delete && !order"}}
+%span.btn.btn-xs.btn-danger.glyphicon.glyphicon-remove{data: {ng_click: "vm.deleteRoll(roll.id, textile)", ng_if: "roll.show_delete && !order"}}
 %label.label-warning{data: {ng_if: "!textile.code"}} {{roll.code}}
 .label.label-danger {{roll.suffix || "_" | uppercase}}
 .label.label-success Remain: {{roll.left | number : 2}} m
