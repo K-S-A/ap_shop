@@ -1,18 +1,18 @@
 .btn-group.btn-group-justified
   .btn.btn-success.btn-lg{data: {ui_sref: "newOrder"}} New Order
+%b.row.text-center
+  .col-xs-3
+    %span.col-xs-2 Number
+    %span.col-xs-5 Order date
+    %span.col-xs-5 Customer
+  %span.col-xs-1 Phone
+  %span.col-xs-1 Prepay
+  %span.col-xs-1 Discount
+  %span.col-xs-1 Left
+  %span.col-xs-1 Total
+  %span.col-xs-1 Status
+  %span.col-xs-3 Comment
 .list-group
-  %b.row.list-group-item.text-center
-    .col-xs-3
-      %span.col-xs-2 Number
-      %span.col-xs-5 Order date
-      %span.col-xs-5 Customer
-    %span.col-xs-1 Phone
-    %span.col-xs-1 Prepay
-    %span.col-xs-1 Discount
-    %span.col-xs-1 Left
-    %span.col-xs-1 Total
-    %span.col-xs-1 Status
-    %span.col-xs-3 Comment
   .row.list-group-item{data: {ng_include: "'views/orders/_order_list.html'",
   ng_repeat: "order in vm.orders | orderBy : ['-order_date', '-id']",
   ui_sref: "editOrder({id: order.id})",

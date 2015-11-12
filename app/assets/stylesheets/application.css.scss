@@ -30,6 +30,7 @@ input[type=number] {
     -moz-appearance:textfield;
 }
 
-.row.list-group-item:hover {
-  background-color: green;
+.list-group-item:hover {
+  @extend .active;  
+  cursor: pointer;
 }

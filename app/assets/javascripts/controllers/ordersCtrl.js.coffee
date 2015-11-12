@@ -19,7 +19,7 @@ angular.module('storeApp').controller 'OrdersCtrl', [
     vm.addItem = ->
       modalInstance = $modal.open(
         templateUrl: 'views/textiles/_index.html'
-        controller: 'TextilesCtrl'
+        controller: 'TextilesCtrl as vm'
         scope: $scope
         size: 'lg')
       modalInstance.result.finally ->

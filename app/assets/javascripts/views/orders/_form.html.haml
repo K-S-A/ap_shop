@@ -68,15 +68,13 @@
       %button.btn.btn-lg.btn-warning{type: "button", data: {ng_click: "vm.removeItem()"}} Remove Selected
     .btn-group{data: {ng_if: "vm.order.order_items.length > 0"}}
       %button.btn.btn-lg.btn-danger{type: "button", data: {ng_click: "vm.removeItem(true)"}} Remove All
-  .row.list-group
-    .col-xs-12
-      .list-group-item.text-center
-        .row
-          %b.col-xs-4 Name and code
-          %b.col-xs-4 Additional information
-          .col-xs-3
-            .row
-              %b.col-xs-6 Price, &#8372/(m or unit)
-              %b.col-xs-6 Amount, m or unit
-          %b.col-xs-1 Subtotal, &#8372
-      .list-group-item{data: {ng_include: "'views/order_items/_order_item.html'", ng_repeat: "order_item in vm.order.order_items"}}
+  %b.row.text-center
+    .col-xs-4 Name and code
+    .col-xs-4 Additional information
+    .col-xs-3
+      .row
+        .col-xs-6 Price, &#8372/(m or unit)
+        .col-xs-6 Amount, m or unit
+    .col-xs-1 Subtotal, &#8372
+  .list-group
+    .row.list-group-item{data: {ng_include: "'views/order_items/_order_item.html'", ng_repeat: "order_item in vm.order.order_items"}}

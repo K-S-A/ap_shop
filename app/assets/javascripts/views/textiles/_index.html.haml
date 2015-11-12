@@ -1,3 +1,4 @@
+{{vm.obj}}
 %span{data: {ng_if: "vm.obj.searches.length > 0"}} Search history:
 %a.btn.btn-info.btn-sm{data: {ng_repeat: "search in vm.obj.searches", ng_click: "vm.repeatSearch($index)"}}
   %span _{{search.code}}_
