@@ -6,6 +6,7 @@ angular.module('storeApp').factory 'orders', [
   (_, $http) ->
     o =
       orders: []
+      blankorder: {}
       order:
         number: null
         order_date: new Date().toISOString().split('T')[0]
@@ -24,6 +25,7 @@ angular.module('storeApp').factory 'orders', [
         'ready'
         'delivered'
         'canceled']
+    angular.copy o.order, o.blankorder
 
     o.add = (order) ->
       $http.post('/orders.json', order).then (res) ->
@@ -39,6 +41,9 @@ angular.module('storeApp').factory 'orders', [
       $http.get('/orders/' + id + '.json').success (data) ->
         data.total = o.calcTotal(data.order_items)
         angular.copy data, o.order
+
+    o.resetOrder = ->
+      angular.copy o.blankorder, o.order
 
     o.calcTotal = (order_items) ->
       _.reduce(order_items, (memo, order_item) ->

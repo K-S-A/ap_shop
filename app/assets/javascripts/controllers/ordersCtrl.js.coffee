@@ -29,6 +29,7 @@ angular.module('storeApp').controller 'OrdersCtrl', [
       orders.removeItem(remove_all)
 
     vm.resetForm = ->
+      orders.resetOrder()
       $state.reload()
 
     vm.updateTotal = ->

@@ -17,7 +17,11 @@ angular.module('storeApp', [
     .state('newOrder',
       url: '/newOrder'
       templateUrl: 'views/orders/_form.html'
-      controller: 'OrdersCtrl as vm')
+      controller: 'OrdersCtrl as vm'
+      resolve: orderPromise: [
+        'orders'
+        (orders) ->
+          orders.resetOrder()])
     .state('orders',
       url: '/orders'
       templateUrl: 'views/orders/_index.html'
