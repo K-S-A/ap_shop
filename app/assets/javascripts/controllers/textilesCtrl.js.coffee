@@ -13,6 +13,7 @@ angular.module('storeApp').controller 'TextilesCtrl', [
     vm.textiles = textiles.textiles
     vm.obj = textiles.obj
     vm.datePattern = rollsFactory.datePattern
+    vm.order = $scope.$parent.order
 
     vm.resetForm = (textile) ->
       textiles.resetForm(textile)

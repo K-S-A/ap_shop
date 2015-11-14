@@ -7,7 +7,7 @@
   .badge Roll count:{{textile.rolls.length}}
   .btn.btn-xs.btn-success{data: {ng_if: "!vm.roll.textile_id && !vm.order", ng_click: "vm.resetForm(textile)"}} New Roll
 .panel-body
-  .panel.panel-danger{data: {ng_if: "textile.new && !vm.order", ng_include: "'views/rolls/_form.html'"}}
+  .panel.panel-danger{data: {ng_if: "textile.new", ng_include: "'views/rolls/_form.html'"}}
   .list-group
     .list-group-item{data: {ng_include: "'views/rolls/_roll.html'",
       ng_repeat: "roll in textile.rolls | orderBy : 'suffix'",
@@ -15,4 +15,4 @@
       ng_mouseenter: "roll.show_delete = true",
       ng_mouseleave: "roll.show_delete = false",
       ng_class: "{'active': roll.show_delete}",
-      ng_click: "$parent.selectRoll(roll.id, textile.price, textile.name, roll.left, roll.suffix, textile.code)"}}
+      ng_click: "selectRoll(roll.id, textile.price, textile.name, roll.left, roll.suffix, textile.code)"}}
