@@ -23,6 +23,7 @@ gem 'rails_admin', '~> 0.7.0'
 gem 'activesupport-json_encoder', '~> 1.1'
 
 group :test do
+  gem 'fuubar', '~> 2.0.0'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'faker', '~> 1.5.0'
   gem 'database_cleaner', '~> 1.5.0'
@@ -36,7 +37,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.3.3'
   gem 'capybara', '~> 2.5.0'
   gem 'selenium-webdriver', '~> 2.47.1'
-  gem 'fuubar', '~> 2.0.0'
   gem 'coderay', '~> 1.1.0'
   gem 'capistrano',         require: false
   gem 'capistrano-rvm',     require: false

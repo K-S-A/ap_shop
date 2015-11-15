@@ -40,6 +40,15 @@ angular.module('storeApp', [
         ($stateParams, orders) ->
           orders.get $stateParams.id
       ])
+    .state('receipts',
+      url: '/receipts'
+      templateUrl: 'views/store_receipts/_index.html'
+      controller: 'StoreReceiptsCtrl as vm'
+      resolve: receiptsPromise: [
+        'orderItems'
+        (orderItems) ->
+          orderItems.getAll()
+      ])
 
     $urlRouterProvider.otherwise 'textiles'
     return

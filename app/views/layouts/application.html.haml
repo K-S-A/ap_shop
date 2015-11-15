@@ -8,7 +8,8 @@
     = csrf_meta_tags
   %body.container-fluid{data: {ng_app: "storeApp"}}
     .btn-group.btn-group-justified
-      .btn.btn-info.btn-lg{data: {ui_sref: "textiles"}} Textiles
-      .btn.btn-info.btn-lg{data: {ui_sref: "orders"}} Orders
+      .btn.btn-info.btn-lg{data: {ui_sref: "textiles", ui_sref_active: "active"}} Textiles
+      .btn.btn-info.btn-lg{data: {ui_sref: "orders", ui_sref_active: "active"}} Orders
+      .btn.btn-info.btn-lg{data: {ui_sref: "receipts", ui_sref_active: "active"}} Receipts
     %br/
     %ui-view
