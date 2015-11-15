@@ -38,8 +38,7 @@ angular.module('storeApp', [
         '$stateParams'
         'orders'
         ($stateParams, orders) ->
-          orders.get $stateParams.id
-      ])
+          orders.get $stateParams.id])
     .state('receipts',
       url: '/receipts'
       templateUrl: 'views/store_receipts/_index.html'
@@ -47,8 +46,7 @@ angular.module('storeApp', [
       resolve: receiptsPromise: [
         'orderItems'
         (orderItems) ->
-          orderItems.getAll()
-      ])
+          orderItems.getAll()])
 
     $urlRouterProvider.otherwise 'textiles'
     return

@@ -19,9 +19,9 @@
           %span.col-xs-1 # {{receipt.order}}
           %span.col-xs-1 {{receipt.order_date}}
           %span.col-xs-1 {{receipt.store_receipt.receipt_date}}
-          %span.col-xs-1 {{receipt.amount_ordered}}
-          %span.col-xs-1 {{receipt.store_receipt.receipt_amount}}
-          %span.col-xs-1 {{receipt.price_sold}}
+          %span.col-xs-1 {{receipt.amount_ordered | number : 2}}
+          %span.col-xs-1 {{receipt.store_receipt.receipt_amount | number : 2}}
+          %span.col-xs-1 {{receipt.price_sold | number : 2}}
           %span.col-xs-1 {{receipt.status}}
           %span.col-xs-2 {{receipt.item_comment}}
   %tab{heading: "Add Receipt"}
@@ -35,13 +35,13 @@
       %span.col-xs-1 Status
       %span.col-xs-2 Comment
     .list-group
-      .list-group-item{data: {ng_if: "!item.store_receipt", ng_repeat: "item in vm.order_items"}}
+      .list-group-item{data: {ng_if: "!item.store_receipt", ng_repeat: "item in vm.order_items", ng_click: "vm.addReceipt($index)"}}
         .row
           %span.col-xs-1.text-uppercase {{item.code + item.suffix}}
           %span.col-xs-2 {{item.name}}
           %span.col-xs-1 # {{item.order}}
           %span.col-xs-1 {{item.order_date}}
-          %span.col-xs-1 {{item.amount_ordered}}
-          %span.col-xs-1 {{item.price_sold}}
+          %span.col-xs-1 {{item.amount_ordered | number : 2}}
+          %span.col-xs-1 {{item.price_sold | number : 2}}
           %span.col-xs-1 {{item.status}}
           %span.col-xs-2 {{item.item_comment}}

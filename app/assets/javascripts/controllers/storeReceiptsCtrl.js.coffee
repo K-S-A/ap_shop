@@ -7,5 +7,8 @@ angular.module('storeApp').controller 'StoreReceiptsCtrl', [
     vm = this
     vm.order_items = orderItems.order_items
 
+    vm.addReceipt = (index) ->
+      orderItems.addReceipt(index)
+
     vm
 ]

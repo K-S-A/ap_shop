@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :rolls, only: [:index, :show, :create, :destroy]
   resources :orders, only: [:index, :show, :create]
   resources :order_items, only: [:index]
+  resources :store_receipts, only: [:create]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
